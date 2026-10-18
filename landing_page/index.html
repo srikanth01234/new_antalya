@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antalya Restaurant | Same Taste. More Locations. Across Ontario.</title>
+  <meta name="description" content="Experience Antalya's authentic Turkish cuisine at our partner locations across Ontario: Burlington, Kitchener, and London. Each restaurant brings the same tradition, flavour, and warm hospitality." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Ambient background curves & glow -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+  <div class="bg-curve-accent"></div>
+
+  <!-- Main Canvas Container -->
+  <main class="page-container">
+    
+    <!-- ═══════════════════════════════════════════════
+         TOP SECTION: Hero, Map & Ambience Showcase
+         ═══════════════════════════════════════════════ -->
+    <header class="hero-section">
+
+      <!-- LEFT COLUMN: Brand, Typography & CTA -->
+      <div class="hero-left">
+        <!-- Brand Header: Cloche Dish + ANTALYA + Cutlery -->
+        <div class="brand-badge">
+          <svg class="icon-cloche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 4C8.5 4 5 7 5 11h14c0-4-3.5-7-7-7z" />
+            <path d="M3 14h18v1.5a1 1 0 01-1 1H4a1 1 0 01-1-1V14z" />
+            <circle cx="12" cy="2.5" r="1.2" fill="currentColor" />
+          </svg>
+          <span class="brand-text">ANTALYA</span>
+          <svg class="icon-cutlery" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm10-7h-3c-1.66 0-3 1.34-3 3v8h2v9h3v-9h2V2z" />
+          </svg>
+        </div>
+
+        <!-- Section Label with line -->
+        <div class="section-label-group">
+          <span class="section-label">OUR PARTNERS</span>
+          <span class="section-line"></span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="hero-headline">
+          <span class="headline-line">Same Taste.</span>
+          <span class="headline-line">More Locations.</span>
+          <span class="headline-line highlight-gold">Across Ontario.</span>
+        </h1>
+
+        <!-- Paragraph Description -->
+        <p class="hero-description">
+          Experience Antalya's authentic Turkish cuisine at our partner locations across Ontario. Each restaurant brings the same tradition, flavour, and warm hospitality.
+        </p>
+
+        <!-- CTA Button -->
+        <div class="hero-actions">
+          <button id="findLocationBtn" class="btn-primary" aria-label="Find a location near you">
+            <span>FIND A LOCATION NEAR YOU</span>
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- CENTER COLUMN: Ontario Interactive Map & Golden Route -->
+      <div class="hero-center">
+        <div class="map-wrapper" id="ontarioMap">
+          <!-- Ontario Map Image with smooth vignette masking -->
+          <img src="assets/ontario_map.jpg" alt="Artistic Map of Ontario" class="map-bg-image" />
+          
+          <!-- Subtle Ontario label -->
+          <div class="map-label">ONTARIO</div>
+
+          <!-- Golden Route SVG Canvas -->
+          <svg class="route-svg" viewBox="0 0 450 400" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="goldRouteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#C5A065" />
+                <stop offset="50%" stop-color="#B27339" />
+                <stop offset="100%" stop-color="#8C4222" />
+              </linearGradient>
+            </defs>
+
+            <!-- Curved flight/highway route connecting Burlington -> Kitchener -> London -->
+            <path class="route-line-glow" d="M 195 95 C 245 140, 248 190, 240 215 C 230 245, 190 280, 160 305" />
+            <path id="routePath" class="route-line" d="M 195 95 C 245 140, 248 190, 240 215 C 230 245, 190 280, 160 305" />
+
+            <!-- Secondary decorative dashed trail -->
+            <path class="route-dashed-arc" d="M 195 95 Q 260 160, 240 215" stroke-dasharray="3,5" />
+            <path class="route-dashed-arc" d="M 240 215 Q 210 270, 160 305" stroke-dasharray="3,5" />
+
+            <!-- Airplane icon along route -->
+            <g class="plane-marker" transform="translate(185, 235) rotate(-42)">
+              <path d="M12 2a1 1 0 0 1 .993.883L13 3v4.5l5.5 3a1 1 0 0 1 .493.737L19 11.5v1.2a1 1 0 0 1-1.39.923L13 11.5V17l2 1.5a1 1 0 0 1 .39.7l.01.1v.9a1 1 0 0 1-1.555.832L12 20.7l-1.845 1.332A1 1 0 0 1 8.6 21.2v-.9a1 1 0 0 1 .4-.8L11 17v-5.5l-4.61 2.123A1 1 0 0 1 5 12.7v-1.2a1 1 0 0 1 .493-.863L6 10.5 11 7.5V3a1 1 0 0 1 1-1z" fill="#B27339" opacity="0.9" />
+            </g>
+          </svg>
+
+          <!-- Interactive Map Location Pins (Burlington, Kitchener, London) -->
+          <!-- Pin 01: Burlington -->
+          <div class="map-pin pin-burlington active" data-branch="0" style="top: 24%; left: 44%;">
+            <div class="pin-ring">
+              <span class="pin-pulse"></span>
+              <span class="pin-dot"></span>
+            </div>
+            <div class="pin-tag">
+              <span class="tag-num">01</span>
+              <span class="tag-title">Burlington</span>
+            </div>
+          </div>
+
+          <!-- Pin 02: Kitchener -->
+          <div class="map-pin pin-kitchener" data-branch="1" style="top: 52%; left: 54%;">
+            <div class="pin-ring">
+              <span class="pin-pulse"></span>
+              <span class="pin-dot"></span>
+            </div>
+            <div class="pin-tag">
+              <span class="tag-num">02</span>
+              <span class="tag-title">Kitchener</span>
+            </div>
+          </div>
+
+          <!-- Pin 03: London -->
+          <div class="map-pin pin-london" data-branch="2" style="top: 76%; left: 36%;">
+            <div class="pin-ring">
+              <span class="pin-pulse"></span>
+              <span class="pin-dot"></span>
+            </div>
+            <div class="pin-tag">
+              <span class="tag-num">03</span>
+              <span class="tag-title">London</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Arched Restaurant Window & Glass Metrics Card -->
+      <div class="hero-right">
+        <!-- Floating Glassmorphism Metric Pill -->
+        <aside class="glass-metrics-card">
+          <!-- Metric 1: Partner Locations -->
+          <div class="metric-item">
+            <div class="metric-icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </div>
+            <div class="metric-text-group">
+              <span class="metric-val">3+</span>
+              <span class="metric-lbl">Partner Locations</span>
+            </div>
+          </div>
+
+          <div class="metric-divider"></div>
+
+          <!-- Metric 2: Same Authentic Taste -->
+          <div class="metric-item">
+            <div class="metric-icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div class="metric-text-group">
+              <span class="metric-val-sm">Same</span>
+              <span class="metric-lbl">Authentic Taste</span>
+            </div>
+          </div>
+
+          <div class="metric-divider"></div>
+
+          <!-- Metric 3: Serving Ontario with Hospitality -->
+          <div class="metric-item">
+            <div class="metric-icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+              </svg>
+            </div>
+            <div class="metric-text-group">
+              <span class="metric-val-sm">Serving Ontario</span>
+              <span class="metric-lbl">with Hospitality</span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Arched Window Frame with Olive Tree & Lantern Ambience -->
+        <div class="arch-window-frame">
+          <img src="assets/arch_window.jpg" alt="Antalya Turkish Restaurant Dining Room View" class="arch-window-img" />
+          <div class="arch-overlay-gradient"></div>
+
+          <!-- Bottom Right Calligraphy Text -->
+          <div class="arch-calligraphy">
+            Bringing<br />Turkey Closer<br />To You
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+    <!-- ═══════════════════════════════════════════════
+         BOTTOM SECTION: Branch Showcase & Location Navigator
+         ═══════════════════════════════════════════════ -->
+    <section class="branch-showcase-section" id="branchShowcase">
+
+      <!-- Panoramic Showcase Card Container -->
+      <div class="showcase-card">
+
+        <!-- ── Showcase Left: Branch Selection Pill Buttons ── -->
+        <div class="showcase-sidebar">
+          <div class="branch-pill-list" role="tablist" aria-label="Branch Locations">
+            
+            <!-- Tab 01: Burlington (Active by default) -->
+            <button class="branch-tab-pill active" data-branch-index="0" role="tab" aria-selected="true" id="tab-0">
+              <div class="pill-thumb-wrap">
+                <span class="pill-index">01</span>
+                <img src="assets/burlington.jpg" alt="Burlington Interior" class="pill-thumb" />
+              </div>
+              <span class="pill-branch-name">Burlington</span>
+              <svg class="pill-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <!-- Tab 02: Kitchener -->
+            <button class="branch-tab-pill" data-branch-index="1" role="tab" aria-selected="false" id="tab-1">
+              <div class="pill-thumb-wrap">
+                <span class="pill-index">02</span>
+                <img src="assets/kitchener.jpg" alt="Kitchener Interior" class="pill-thumb" />
+              </div>
+              <span class="pill-branch-name">Kitchener</span>
+              <svg class="pill-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <!-- Tab 03: London -->
+            <button class="branch-tab-pill" data-branch-index="2" role="tab" aria-selected="false" id="tab-2">
+              <div class="pill-thumb-wrap">
+                <span class="pill-index">03</span>
+                <img src="assets/london.jpg" alt="London Interior" class="pill-thumb" />
+              </div>
+              <span class="pill-branch-name">London</span>
+              <svg class="pill-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- ── Showcase Center: Large Interactive Photo Viewport ── -->
+        <div class="showcase-photo-viewport">
+          <div class="photo-slide-container" id="photoSlider">
+            <img src="assets/burlington.jpg" alt="Antalya Restaurant Interior" class="showcase-main-img" id="mainBranchImage" />
+            <div class="photo-glass-reflection"></div>
+          </div>
+
+          <!-- Bottom Floating Controls Overlay on the Photo -->
+          <div class="photo-controls-bar">
+            <!-- Left: Redirect to Branch Website Icon Button -->
+            <button class="btn-icon-folder" id="openFolderBtn" title="Visit Branch Website" aria-label="Visit Branch Website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </button>
+
+            <!-- Right Controls: Pagination Index + Circular Arrow Buttons -->
+            <div class="photo-pagination-group">
+              <span class="photo-counter" id="photoCounter">01 / 03</span>
+              <button class="btn-circle-nav" id="prevBranchBtn" aria-label="Previous Branch">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button class="btn-circle-nav" id="nextBranchBtn" aria-label="Next Branch">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Showcase Right: Branch Detail Glass Card ── -->
+        <div class="showcase-detail-panel">
+          
+          <!-- Background Galata Tower Pencil Sketch -->
+          <div class="galata-sketch-wrap">
+            <img src="assets/galata_tower.jpg" alt="Galata Tower Istanbul Architectural Sketch" class="galata-sketch-img" />
+          </div>
+
+          <!-- Content Foreground -->
+          <div class="detail-content">
+            <div class="detail-top-group">
+              <span class="detail-index" id="branchDetailIndex">01</span>
+              <h2 class="detail-title" id="branchDetailTitle">Burlington</h2>
+
+              <!-- Decorative Diamond Divider -->
+              <div class="detail-divider">
+                <span class="divider-line"></span>
+                <span class="divider-diamond">◈</span>
+                <span class="divider-line"></span>
+              </div>
+
+              <!-- Location Address with Pin Icon -->
+              <div class="detail-address-group">
+                <svg class="icon-address-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <div class="detail-address-text" id="branchDetailAddress">
+                  1860 Appleby Line,<br />Burlington, ON L7L 7H7
+                </div>
+              </div>
+
+              <!-- Description -->
+              <p class="detail-description" id="branchDetailDescription">
+                A warm and inviting space to enjoy our signature Turkish dishes.
+              </p>
+            </div>
+
+            <!-- Visit Restaurant Redirect CTA Button (Direct Redirect to branch website) -->
+            <button class="btn-visit-branch" id="visitRestaurantBtn">
+              <span>VISIT RESTAURANT</span>
+              <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
